@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
+    <title>Made by Drazox From NightDream Developments</title>
+    <style>
+        body {
+            font-family: 'Roboto Condensed';
+            font-size: 60px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            text-align: center;
+            margin: 20px;
+            position: relative;
+            height: 95vh;
+        }
+        .container {
+            display: none;
+        }
+
+        #speed {
+            font-family: 'Roboto Condensed';
+            font-size: 60px;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            bottom: 0.1vh;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width .2s, height .4s;
+        }
+        #fuel {
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            bottom: 0.1vh;
+            left: 57%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cont">
+    <div id="speed">0 kmh</div>
+    <!-- <div id="fuel">-1 %</div> -->
+    </div>
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'updateSpeed') {
+                document.getElementById('speed').innerHTML = event.data.speed + ' kmh';
+            }
+            if (event.data.type === 'updateFuel') {
+                //document.getElementById('fuel').innerHTML = event.data.fuel + ' % üzemanyag';
+            }
+
+            if (event.data.type === 'showhud') {
+                if (event.data.show === true) {
+                    document.getElementById('cont').style.display = 'block';
+                } else {
+                    document.getElementById('cont').style.display = 'none';
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
